@@ -9,8 +9,8 @@
     "dev": "ts-node-dev src",
     "dev:verbose": "ts-node-dev src -v",
     "build": "tsc",
-    "lint": "eslint",
-    "lint:fix": "eslint --fix"
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint --fix src/**/*.ts"
   },
   "repository": {
     "type": "git",

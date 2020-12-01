@@ -12,7 +12,7 @@ export interface DateRangePaymentDates {
 export interface PaymentConfig {
   Date: number, // Standard date of payment
   AlternativeDay: number // Alternative day of week to use if payment date was a weekend (dayjs weekday standard: 0 = sun, 6 = sat)
-  AlternativeDirection: 1 | -1  // If using alternative day, search forwards (1) or backwards (-1).
+  AlternativeDirection: 1 | -1 // If using alternative day, search forwards (1) or backwards (-1).
 }
 
 export enum SalaryPaymentConfig {
@@ -41,10 +41,8 @@ function calculatePaymentDateForMonth (monthStartingAt: DDate, paymentConfig: Pa
       if (paymentConfig.AlternativeDay > dayOfWeek) {
         potentialDate = potentialDate.subtract(1, 'week')
       }
-    } else {
-      if (paymentConfig.AlternativeDay < dayOfWeek) {
-        potentialDate = potentialDate.add(1, 'week')
-      }
+    } else if (paymentConfig.AlternativeDay < dayOfWeek) {
+      potentialDate = potentialDate.add(1, 'week')
     }
     potentialDate = potentialDate.day(paymentConfig.AlternativeDay)
     potentialDate = potentialDate.day(paymentConfig.AlternativeDay)
@@ -70,21 +68,18 @@ function calculatePaymentDatesInRange (from: DDate, to: DDate): DateRangePayment
 }
 
 export function prettyPrintRangeOutput (output: DateRangePaymentDates, showDays = false): void {
-  let displayHeaders = ['Month Commencing', 'Salary Payment Date', 'Bonus Payment Date']
-  console.log(displayHeaders.join(',' + ' '.repeat(showDays ? 3 : 1)))
+  const displayHeaders = ['Month Commencing', 'Salary Payment Date', 'Bonus Payment Date']
+  console.log(displayHeaders.join(`,${' '.repeat(showDays ? 3 : 1)}`))
 
   let dateFormat = 'YYYY-MM-DD'
   if (showDays) {
-    dateFormat = `dd DD MMM YYYY`
+    dateFormat = 'dd DD MMM YYYY'
   }
-  for (const d in output) {
-    if (!output.hasOwnProperty(d)) {
-      continue
-    }
+  Object.keys(output).forEach((d) => {
     const monthStartDate = dayjs(d)
-    let displayColumns = [monthStartDate.format(dateFormat), output[d].salaries.format(dateFormat), output[d].bonuses.format(dateFormat)]
-    console.log(displayColumns.join(',' + ' '.repeat(showDays ? 8 : 1)))
-  }
+    const displayColumns = [monthStartDate.format(dateFormat), output[d].salaries.format(dateFormat), output[d].bonuses.format(dateFormat)]
+    console.log(displayColumns.join(`,${' '.repeat(showDays ? 8 : 1)}`))
+  })
 }
 
 function handler (): void {
