@@ -16,7 +16,7 @@ module.exports = {
     'space-before-function-paren': ['error', 'always'], // space after name in function def
     indent: ['error', 2], // 2 spaces indentation
     semi: ['error', 'never'], // never semi-colons
-    'max-len': ['error', { code: 120 }], // max line length 120 chars
+    'max-len': ['error', { code: 180 }], // max line length 120 chars
     'no-restricted-syntax': ['error'],
     'arrow-body-style': ['error', 'as-needed'],
     /* only require newline after class methods, not single-line properties: */
@@ -31,7 +31,6 @@ module.exports = {
     'no-plusplus': ['error', {
       allowForLoopAfterthoughts: true,
     }],
-
     // TypeScript ESLint fixes (some ESLint rules don't work with TS by default):
     'no-shadow': 'off', // doesn't work properly with TS, use below TS rule instead
     '@typescript-eslint/no-shadow': ['error'], // proper way to disallow shadow vars in TS
