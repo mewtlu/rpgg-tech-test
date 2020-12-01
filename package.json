@@ -1,0 +1,20 @@
+{
+  "name": "rpgg-tech-test",
+  "version": "1.0.0",
+  "private": true,
+  "description": "RPGG's technical test completed by Luke Roberts",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/mewtlu/rpgg-tech-test.git"
+  },
+  "author": "Luke Roberts <luke@mewt.eu>",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://gitlab.com/mewtlu/rpgg-tech-test/issues"
+  },
+  "homepage": "https://gitlab.com/mewtlu/rpgg-tech-test#readme"
+}
